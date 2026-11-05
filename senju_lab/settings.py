@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "usuarios",
+    "ventas",
+    "cafeteria",
+    "impresion3d",
+    "torneos",
 ]
 
 MIDDLEWARE = [
@@ -74,8 +79,12 @@ WSGI_APPLICATION = 'senju_lab.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "senju_db",  # El nombre de la base de datos que creaste en Postgres
+        "USER": "tu_usuario_postgres",  # Tu usuario de PostgreSQL (ej. postgres)
+        "PASSWORD": "tu_password",  # Tu contraseña de PostgreSQL
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
