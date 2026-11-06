@@ -20,9 +20,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('usuarios.urls')),
+   path('api/usuarios/', include('usuarios.urls')),
+    path('api/impresion3d/', include('impresion3d.urls')),
 
     # Rutas de Autenticación JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),   
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
+
+

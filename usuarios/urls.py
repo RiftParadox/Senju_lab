@@ -1,12 +1,12 @@
+# usuarios/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import PerfilClienteViewSet, CuponDescuentoViewSet, RegistroView
 
 router = DefaultRouter()
-router.register(r'perfiles', PerfilClienteViewSet)
-router.register(r'cupones', CuponDescuentoViewSet)
-
+router.register(r'perfiles', PerfilClienteViewSet, basename='perfilcliente')      
+router.register(r'cupones', CuponDescuentoViewSet, basename='cupones') 
 urlpatterns = [
-    path('auth/register/', RegistroView.as_view(), name='auth_register'),
+    path('auth/registro/', RegistroView.as_view(), name='registro'),
     path('', include(router.urls)),
 ]
