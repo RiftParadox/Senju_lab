@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     "usuarios",
     "ventas",
     "cafeteria",
@@ -81,8 +82,8 @@ DATABASES = {
     'default': {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "senju_db",  # El nombre de la base de datos que creaste en Postgres
-        "USER": "tu_usuario_postgres",  # Tu usuario de PostgreSQL (ej. postgres)
-        "PASSWORD": "tu_password",  # Tu contraseña de PostgreSQL
+        "USER": "postgres",  # Tu usuario de PostgreSQL (ej. postgres)
+        "PASSWORD": "1234",  # Tu contraseña de PostgreSQL
         "HOST": "localhost",
         "PORT": "5432",
     }
