@@ -1,6 +1,3 @@
-from django.db import models
-from django.contrib.auth.models import User
-
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -25,10 +22,10 @@ class CuponDescuento(models.Model):
     # Código único del cupón (ej: SENJU-XYZ789)
     codigo = models.CharField(max_length=50, unique=True)
 
-    # Valor del descuento (puede ser un porcentaje o un monto fijo, usaremos porcentaje por ejemplo)
+    # Valor del descuento (porcentaje)
     porcentaje_descuento = models.PositiveIntegerField(default=10)
 
-    # Para saber si ya fue gastado o sigue disponible en la UI bonita
+    # Para saber si ya fue gastado o sigue disponible
     usado = models.BooleanField(default=False)
 
     # Fechas para control
