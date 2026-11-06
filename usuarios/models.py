@@ -9,28 +9,27 @@ class PerfilCliente(models.Model):
     telefono = models.CharField(max_length=20, blank=True, null=True)
     sellos_tarjeta = models.PositiveIntegerField(default=0)
 
+    class Meta:
+        verbose_name = "Perfil de Cliente"
+        verbose_name_plural = "Perfiles de Clientes"
+
     def __str__(self):
         return f"Perfil de {self.user.username} - Sellos: {self.sellos_tarjeta}/5"
 
 
 class CuponDescuento(models.Model):
-    # Relación de Uno a Muchos: Un cliente puede tener MUCHOS cupones acumulados
     cliente = models.ForeignKey(
         PerfilCliente, on_delete=models.CASCADE, related_name="cupones"
     )
-
-    # Código único del cupón (ej: SENJU-XYZ789)
     codigo = models.CharField(max_length=50, unique=True)
-
-    # Valor del descuento (porcentaje)
     porcentaje_descuento = models.PositiveIntegerField(default=10)
-
-    # Para saber si ya fue gastado o sigue disponible
     usado = models.BooleanField(default=False)
-
-    # Fechas para control
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_uso = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Cupón de Descuento"
+        verbose_name_plural = "Cupones de Descuento"
 
     def __str__(self):
         estado = "Usado" if self.usado else "Disponible"
