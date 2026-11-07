@@ -86,6 +86,17 @@ class EncargoSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         user = request.user if request else None
 
+        solicitud = data.get('solicitud', self.instance.solicitud if self.instance else None)
+        if self.instance is None:
+            if solicitud is None:
+                raise serializers.ValidationError({'solicitud': 'Selecciona la solicitud aceptada que origina este encargo.'})
+            if solicitud.estado != EstadoSolicitud.ACEPTADA:
+                raise serializers.ValidationError({'solicitud': 'Solo se pueden crear encargos para solicitudes aceptadas.'})
+            if hasattr(solicitud, 'encargo'):
+                raise serializers.ValidationError({'solicitud': 'Esta solicitud ya tiene un encargo asociado.'})
+        elif 'solicitud' in data and solicitud.pk != self.instance.solicitud_id:
+            raise serializers.ValidationError({'solicitud': 'No se puede cambiar la solicitud asociada a un encargo.'})
+
         # Solo el staff del taller puede cambiar los estados de fabricación
         if user and not user.is_staff:
             raise serializers.ValidationError(
